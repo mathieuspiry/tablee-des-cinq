@@ -266,6 +266,16 @@ dialog::backdrop{background:rgba(10,15,12,.55)}
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+<dialog id="codeDlg" aria-labelledby="cTitle">
+  <div class="dhead"><h2 id="cTitle">Code famille</h2></div>
+  <form class="dbody" id="codeForm" method="dialog" style="display:flex;flex-direction:column;gap:12px">
+    <p id="codeMsg" style="margin:0;color:var(--muted)"></p>
+    <input id="codeInput" type="text" inputmode="numeric" autocomplete="one-time-code" placeholder="Code" aria-label="Code famille" style="padding:12px 14px;border:1px solid var(--line-strong);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit;font-size:20px;letter-spacing:.2em;text-align:center">
+    <div class="acts" style="justify-content:flex-end"><button type="button" class="btn ghost" id="codeLater">Plus tard</button><button type="submit" class="btn primary">Se connecter</button></div>
+  </form>
+</dialog>
 <script src="recipes.js"></script>
 <script src="week.js"></script>
 <script>
@@ -278,19 +288,14 @@ dialog::backdrop{background:rgba(10,15,12,.55)}
 
   // ---------- état partagé (swaps, cases cochées, articles ajoutés) ----------
   let state = {swaps:{}, checked:{}, extras:[]};
-  let db = null, docRef = null, unsub = null;
   const LS_KEY = "tablee:" + WEEK.id;
   function loadLocal(){ try{ const s = localStorage.getItem(LS_KEY); if(s) state = Object.assign({swaps:{},checked:{},extras:[]}, JSON.parse(s)); }catch(e){} }
   function saveLocal(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }catch(e){} }
   let writeTimer = null;
-  function persist(){
+  let persist = function(){
     saveLocal();
-    if(docRef){
-      clearTimeout(writeTimer);
-      writeTimer = setTimeout(() => docRef.set(JSON.parse(JSON.stringify(state))).catch(()=>{}), 250);
-    }
     renderAll();
-  }
+  };
 
   // ---------- helpers ----------
   function recipeFor(slot){ const id = slot.key in state.swaps ? state.swaps[slot.key] : slot.recipe; return id ? byId[id] : null; }
@@ -455,19 +460,56 @@ dialog::backdrop{background:rgba(10,15,12,.55)}
   loadLocal(); renderAll(); renderRecipes();
   try{ const t = localStorage.getItem("tablee:tab"); if(t && document.getElementById(t)) showTab(t); }catch(e){}
 
-  // synchronisation entre les deux adultes, quand elle est disponible
-  (async () => {
-    if(!window.claude || !window.claude.use) return;
-    try{ db = await window.claude.use("db"); }catch(e){ db = null; }
-    if(!db) return;
-    docRef = db.doc("weeks/" + WEEK.id);
-    const sy = $("#sync");
-    unsub = docRef.onSnapshot(snap => {
-      sy.classList.add("on"); sy.querySelector("span").textContent = "Synchronisé entre vos téléphones";
-      if(snap.exists){ const d = snap.data(); if(!snap.metadata.hasPendingWrites){ state = {swaps: d.swaps || {}, checked: d.checked || {}, extras: d.extras || []}; saveLocal(); renderAll(); } }
-      else if(Object.keys(state.swaps).length || Object.keys(state.checked).length || state.extras.length){ docRef.set(JSON.parse(JSON.stringify(state))).catch(()=>{}); }
-    }, () => { sy.classList.remove("on"); sy.querySelector("span").textContent = "Hors ligne, cases enregistrées sur cet appareil"; });
-  })();
+  // ---------- synchronisation entre vos téléphones (Firebase, code famille) ----------
+  const FB = {
+    apiKey: "AIzaSyDgOouPznyKt_zT_iElGSKJtg38izaxsYc",
+    authDomain: "tablee-des-cinq.firebaseapp.com",
+    databaseURL: "https://tablee-des-cinq-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "tablee-des-cinq"
+  };
+  const sy = $("#sync");
+  let ref = null, applyingRemote = false;
+  function setSync(on, text){ sy.classList.toggle("on", on); sy.querySelector("span").textContent = text; }
+  function getCode(){ try{ return localStorage.getItem("tablee:code") || ""; }catch(e){ return ""; } }
+  function askCode(msg){
+    $("#codeMsg").textContent = msg || "";
+    $("#codeInput").value = "";
+    if(!$("#codeDlg").open) $("#codeDlg").showModal();
+    setTimeout(() => $("#codeInput").focus(), 50);
+  }
+  function connect(code){
+    if(!window.firebase){ setSync(false, "Synchronisation indisponible, enregistré sur cet appareil"); return; }
+    if(ref){ ref.off(); ref = null; }
+    if(!firebase.apps.length) firebase.initializeApp(FB);
+    ref = firebase.database().ref("familles/" + code + "/weeks/" + WEEK.id);
+    setSync(false, "Connexion…");
+    ref.on("value", snap => {
+      const d = snap.val();
+      setSync(true, "Synchronisé entre vos téléphones");
+      if(d){ applyingRemote = true; state = {swaps: d.swaps || {}, checked: d.checked || {}, extras: d.extras || []}; saveLocal(); renderAll(); applyingRemote = false; }
+      else if(Object.keys(state.swaps).length || Object.keys(state.checked).length || state.extras.length){ ref.set(JSON.parse(JSON.stringify(state))); }
+    }, err => {
+      ref.off(); ref = null;
+      try{ localStorage.removeItem("tablee:code"); }catch(e){}
+      setSync(false, "Code famille refusé, enregistré sur cet appareil");
+      askCode("Ce code n'est pas le bon. Réessaie.");
+    });
+  }
+  // persist() écrit aussi dans Firebase
+  const persistLocalOnly = persist;
+  persist = function(){ persistLocalOnly(); if(ref) ref.set(JSON.parse(JSON.stringify(state))).catch(()=>{}); };
+  $("#codeForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const code = $("#codeInput").value.trim().replace(/[^A-Za-z0-9_-]/g, "");
+    if(!code) return;
+    try{ localStorage.setItem("tablee:code", code); }catch(e){}
+    $("#codeDlg").close(); connect(code);
+  });
+  $("#codeLater").onclick = () => { $("#codeDlg").close(); setSync(false, "Enregistré sur cet appareil, sans synchronisation"); };
+  sy.style.cursor = "pointer"; sy.title = "Cliquer pour saisir ou changer le code famille";
+  sy.onclick = () => askCode("Saisis le code famille pour synchroniser vos téléphones.");
+  const savedCode = getCode();
+  if(savedCode) connect(savedCode); else askCode("Pour que la liste de courses soit partagée entre vos téléphones, saisis le code famille.");
 })();
 </script>
 </body>
