@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2E6B3F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Tablée">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+</head>
+<body>
+<title>La Tablée des Cinq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+:root{
+  --bg:#F3F4EE; --surface:#FFFFFF; --surface-2:#E9ECE3; --line:#D7DCD0; --line-strong:#B9C1B2;
+  --ink:#1B2620; --muted:#5C6A61; --faint:#8B968D;
+  --accent:#2E6B3F; --accent-ink:#FFFFFF; --accent-soft:#DCEBDF;
+  --gold:#B9820F; --gold-soft:#F5E6C2;
+  --viande:#A8472C; --viande-soft:#F4E1DA;
+  --poisson:#2C6C9C; --poisson-soft:#DCE9F3;
+  --vege:#2E6B3F; --vege-soft:#DCEBDF;
+  --plaisir:#C98A12; --plaisir-soft:#F7E8C6;
+  --libre:#7A857D; --libre-soft:#E6E9E3;
+  --shadow:0 10px 30px rgba(27,38,32,.10);
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141A16; --surface:#1D2620; --surface-2:#242F28; --line:#2F3B33; --line-strong:#465447;
+    --ink:#EDEFE8; --muted:#A3AFA5; --faint:#75817A;
+    --accent:#7CC68E; --accent-ink:#0F1A12; --accent-soft:#233A2A;
+    --gold:#E4B43E; --gold-soft:#3A3117;
+    --viande:#E48A6C; --viande-soft:#3E2A23;
+    --poisson:#7FB4DE; --poisson-soft:#1F3140;
+    --vege:#7CC68E; --vege-soft:#233A2A;
+    --plaisir:#E9B84D; --plaisir-soft:#3A3117;
+    --libre:#9AA69E; --libre-soft:#2A332D;
+    --shadow:0 10px 30px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141A16; --surface:#1D2620; --surface-2:#242F28; --line:#2F3B33; --line-strong:#465447;
+  --ink:#EDEFE8; --muted:#A3AFA5; --faint:#75817A;
+  --accent:#7CC68E; --accent-ink:#0F1A12; --accent-soft:#233A2A;
+  --gold:#E4B43E; --gold-soft:#3A3117;
+  --viande:#E48A6C; --viande-soft:#3E2A23;
+  --poisson:#7FB4DE; --poisson-soft:#1F3140;
+  --vege:#7CC68E; --vege-soft:#233A2A;
+  --plaisir:#E9B84D; --plaisir-soft:#3A3117;
+  --libre:#9AA69E; --libre-soft:#2A332D;
+  --shadow:0 10px 30px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+h1,h2,h3{font-family:"Bricolage Grotesque","Source Sans 3",system-ui,sans-serif;text-wrap:balance;margin:0;line-height:1.1}
+.wrap{max-width:960px;margin:0 auto;padding-inline:16px;padding-block:0 96px}
+@media(min-width:720px){.wrap{padding-inline:28px}}
+
+/* ---- top ---- */
+.top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding-block:22px 12px;flex-wrap:wrap}
+.brand{display:flex;flex-direction:column;gap:2px}
+.brand h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-.02em}
+.brand .sub{color:var(--muted);font-size:15px}
+.sync{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+.sync i{width:8px;height:8px;border-radius:50%;background:var(--faint);display:inline-block}
+.sync.on i{background:var(--accent)}
+
+/* ---- tabs ---- */
+.tabs{position:sticky;top:0;z-index:5;background:var(--bg);padding-block:8px 14px;display:flex;gap:6px}
+.tab{flex:1;padding:10px 12px;border:1px solid var(--line);background:var(--surface);border-radius:12px;cursor:pointer;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .15s,border-color .15s}
+.tab .n{font-family:"Bricolage Grotesque",sans-serif;font-size:12px;padding:2px 7px;border-radius:999px;background:var(--surface-2);color:var(--muted);font-variant-numeric:tabular-nums}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tab[aria-selected="true"] .n{background:rgba(255,255,255,.18);color:inherit}
+.tab:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.panel[hidden]{display:none}
+
+/* ---- week header ---- */
+.weekhead{display:grid;grid-template-columns:1fr;gap:14px;padding:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:18px}
+@media(min-width:720px){.weekhead{grid-template-columns:1.4fr 1fr;align-items:center}}
+.weekhead h2{font-size:22px;font-weight:700}
+.weekhead p{margin:6px 0 0;color:var(--muted);max-width:60ch}
+.balance{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-start}
+@media(min-width:720px){.balance{justify-content:flex-end}}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;font-size:13px;font-weight:600;background:var(--surface-2);color:var(--muted);font-variant-numeric:tabular-nums}
+.pill b{font-family:"Bricolage Grotesque",sans-serif;font-size:14px}
+.pill.viande{background:var(--viande-soft);color:var(--viande)}
+.pill.poisson{background:var(--poisson-soft);color:var(--poisson)}
+.pill.vege{background:var(--vege-soft);color:var(--vege)}
+.pill.plaisir{background:var(--plaisir-soft);color:var(--plaisir)}
+.pill.libre{background:var(--libre-soft);color:var(--libre)}
+.pill.kcal{background:var(--gold-soft);color:var(--gold)}
+
+/* ---- menu ---- */
+.days{display:flex;flex-direction:column;gap:10px}
+.slot{display:grid;grid-template-columns:1fr;gap:10px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);border-left:5px solid var(--c,var(--libre))}
+@media(min-width:720px){.slot{grid-template-columns:140px 1fr auto;align-items:center;gap:18px}}
+.slot.viande{--c:var(--viande)} .slot.poisson{--c:var(--poisson)} .slot.vege{--c:var(--vege)} .slot.plaisir{--c:var(--plaisir)}
+.when{display:flex;flex-direction:row;gap:8px;align-items:baseline}
+@media(min-width:720px){.when{flex-direction:column;gap:0}}
+.when .d{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:17px}
+.when .m{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.dish{min-width:0}
+.dish .name{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:18px;line-height:1.2;cursor:pointer;background:none;border:0;padding:0;text-align:left}
+.dish .name:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.dish .name.free{color:var(--muted);cursor:default;font-weight:500}
+.dish .name.free:hover{color:var(--muted);text-decoration:none}
+.meta{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:6px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.meta .cat{font-weight:700;color:var(--c,var(--libre))}
+.meta .swapped{color:var(--gold);font-weight:600}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+.btn{padding:8px 13px;border-radius:10px;border:1px solid var(--line-strong);background:var(--surface);cursor:pointer;font-weight:600;font-size:14px;transition:background .15s}
+.btn:hover{background:var(--surface-2)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.small{padding:6px 10px;font-size:13px}
+.btn.ghost{border-color:transparent;background:transparent;color:var(--muted)}
+.btn.ghost:hover{background:var(--surface-2);color:var(--ink)}
+.hint{color:var(--muted);font-size:14px;margin:14px 2px 0}
+
+/* ---- courses ---- */
+.shophead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:14px}
+.progress{display:flex;align-items:center;gap:10px;font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px}
+.bar{width:140px;height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.rayon{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:12px;overflow:hidden}
+.rayon h3{font-size:13px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);padding:11px 16px;border-bottom:1px solid var(--line);background:var(--surface-2);display:flex;justify-content:space-between;font-family:"Source Sans 3",sans-serif;font-weight:700}
+.rayon h3 span{font-variant-numeric:tabular-nums;color:var(--faint);font-weight:600}
+.item{display:flex;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--line);cursor:pointer;user-select:none}
+.item:last-child{border-bottom:0}
+.item input{width:22px;height:22px;accent-color:var(--accent);margin:0;flex:none;cursor:pointer}
+.item .q{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;min-width:64px;font-variant-numeric:tabular-nums;color:var(--ink)}
+.item .l{flex:1;min-width:0}
+.item .for{display:block;font-size:12px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item.done .q,.item.done .l{color:var(--faint);text-decoration:line-through}
+.item .rm{border:0;background:none;color:var(--faint);cursor:pointer;padding:4px;font-size:18px;line-height:1}
+.item .rm:hover{color:var(--viande)}
+.addrow{display:flex;gap:8px;margin:4px 0 18px}
+.addrow input{flex:1;padding:10px 12px;border:1px solid var(--line-strong);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit}
+.placard .item{cursor:default;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-weight:600;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:50}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ---- recettes ---- */
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.chip{padding:6px 12px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);cursor:pointer;font-size:14px;font-weight:600}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:600px){.grid{grid-template-columns:1fr 1fr}}
+.card{display:flex;flex-direction:column;gap:6px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);border-left:5px solid var(--c,var(--libre));text-align:left;cursor:pointer;transition:transform .12s,box-shadow .12s}
+.card:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+.card.viande{--c:var(--viande)} .card.poisson{--c:var(--poisson)} .card.vege{--c:var(--vege)} .card.plaisir{--c:var(--plaisir)}
+.card .t{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:17px;line-height:1.2}
+.card .fav{color:var(--gold);font-size:13px;font-weight:700}
+.card .s{color:var(--muted);font-size:14px}
+
+/* ---- dialogs ---- */
+dialog{border:0;border-radius:18px;padding:0;background:var(--surface);color:var(--ink);width:min(680px,calc(100vw - 24px));max-height:calc(100vh - 24px);box-shadow:var(--shadow)}
+dialog::backdrop{background:rgba(10,15,12,.55)}
+.dhead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:20px 22px 12px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--surface);z-index:1}
+.dhead h2{font-size:24px;font-weight:800;letter-spacing:-.01em}
+.dhead .x{border:0;background:var(--surface-2);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;flex:none}
+.dbody{padding:16px 22px 24px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.fact{padding:10px 12px;border-radius:10px;background:var(--surface-2)}
+.fact .v{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:20px;font-variant-numeric:tabular-nums;line-height:1.1}
+.fact .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.fact.kcal .v{color:var(--gold)}
+.dbody h3{font-size:13px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin:18px 0 8px;font-family:"Source Sans 3",sans-serif;font-weight:700}
+.ings{list-style:none;margin:0;padding:0;columns:2;column-gap:20px}
+@media(max-width:520px){.ings{columns:1}}
+.ings li{break-inside:avoid;padding:5px 0;border-bottom:1px dashed var(--line);display:flex;gap:10px;font-size:15px}
+.ings li b{font-variant-numeric:tabular-nums;min-width:58px;font-weight:700}
+.steps{margin:0;padding-left:0;list-style:none;counter-reset:s}
+.steps li{position:relative;padding:8px 0 8px 40px;counter-increment:s;border-bottom:1px solid var(--line);max-width:62ch}
+.steps li::before{content:counter(s);position:absolute;left:0;top:8px;width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-family:"Bricolage Grotesque",sans-serif;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
+.variant{padding:12px 14px;border-radius:10px;background:var(--surface-2);margin-top:8px;font-size:15px}
+.variant b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:3px}
+.note{padding:10px 14px;border-radius:10px;background:var(--gold-soft);color:var(--gold);font-weight:600;margin-top:12px;font-size:14px}
+.dfoot{display:flex;gap:8px;justify-content:flex-end;padding:12px 22px 20px;flex-wrap:wrap}
+.swaplist{display:flex;flex-direction:column;gap:6px}
+.swaplist .opt{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);cursor:pointer;text-align:left}
+.swaplist .opt:hover{background:var(--surface-2)}
+.swaplist .opt .dot{width:10px;height:10px;border-radius:50%;flex:none;background:var(--c,var(--libre))}
+.swaplist .opt.viande{--c:var(--viande)} .swaplist .opt.poisson{--c:var(--poisson)} .swaplist .opt.vege{--c:var(--vege)} .swaplist .opt.plaisir{--c:var(--plaisir)}
+.swaplist .opt .t{flex:1;font-weight:600}
+.swaplist .opt .i{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.swaplist .opt.same{border-color:var(--line-strong)}
+.swaplist .sep{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);margin:10px 0 2px;font-weight:700}
+.empty{padding:28px;text-align:center;color:var(--muted)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{.tabs,.acts,.addrow,.sync,.shophead .btn{display:none}.panel[hidden]{display:block}.item{break-inside:avoid}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <h1>La Tablée des Cinq</h1>
+      <div class="sub" id="weekLabel">Semaine en cours</div>
+    </div>
+    <div class="sync" id="sync" title="Les cases et remplacements sont enregistrés sur cet appareil"><i></i><span>Enregistré sur cet appareil</span></div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab" role="tab" id="tab-menu" aria-selected="true" aria-controls="panel-menu">Menu</button>
+    <button class="tab" role="tab" id="tab-courses" aria-selected="false" aria-controls="panel-courses">Courses <span class="n" id="shopCount">0</span></button>
+    <button class="tab" role="tab" id="tab-recettes" aria-selected="false" aria-controls="panel-recettes">Recettes</button>
+  </nav>
+
+  <section class="panel" id="panel-menu" role="tabpanel" aria-labelledby="tab-menu">
+    <div class="weekhead">
+      <div>
+        <h2 id="weekTitle">Menu de la semaine</h2>
+        <p id="weekIntro"></p>
+      </div>
+      <div class="balance" id="balance"></div>
+    </div>
+    <div class="days" id="days"></div>
+    <p class="hint">Un plat ne convient pas ? « Remplacer » propose d'autres recettes de la même famille et la liste de courses se recalcule aussitôt. Le prochain menu arrive automatiquement vendredi matin.</p>
+  </section>
+
+  <section class="panel" id="panel-courses" role="tabpanel" aria-labelledby="tab-courses" hidden>
+    <div class="shophead">
+      <div class="progress"><span id="progressText">0 / 0</span><div class="bar"><i id="progressBar"></i></div></div>
+      <div class="acts">
+        <button class="btn small" id="copyList">Copier la liste</button>
+        <button class="btn small ghost" id="resetChecks">Décocher tout</button>
+      </div>
+    </div>
+    <div class="addrow">
+      <input id="extraInput" type="text" placeholder="Ajouter un article (papier toilette, pommes pour le goûter...)" aria-label="Ajouter un article">
+      <button class="btn primary" id="extraAdd">Ajouter</button>
+    </div>
+    <div id="shop"></div>
+  </section>
+
+  <section class="panel" id="panel-recettes" role="tabpanel" aria-labelledby="tab-recettes" hidden>
+    <div class="filters" id="filters">
+      <button class="chip" data-f="all" aria-pressed="true">Toutes</button>
+      <button class="chip" data-f="fav" aria-pressed="false">★ Favoris de la famille</button>
+      <button class="chip" data-f="vege" aria-pressed="false">Végétarien</button>
+      <button class="chip" data-f="poisson" aria-pressed="false">Poisson</button>
+      <button class="chip" data-f="viande" aria-pressed="false">Viande</button>
+      <button class="chip" data-f="plaisir" aria-pressed="false">Plaisir</button>
+      <button class="chip" data-f="quick" aria-pressed="false">≤ 15 min</button>
+    </div>
+    <div class="grid" id="recipeGrid"></div>
+  </section>
+</div>
+
+<dialog id="recipeDlg" aria-labelledby="rTitle">
+  <div class="dhead"><h2 id="rTitle"></h2><button class="x" id="rClose" aria-label="Fermer">✕</button></div>
+  <div class="dbody" id="rBody"></div>
+  <div class="dfoot" id="rFoot"></div>
+</dialog>
+
+<dialog id="swapDlg" aria-labelledby="sTitle">
+  <div class="dhead"><h2 id="sTitle">Remplacer</h2><button class="x" id="sClose" aria-label="Fermer">✕</button></div>
+  <div class="dbody"><div class="swaplist" id="swapList"></div></div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="recipes.js"></script>
+<script src="week.js"></script>
+<script>
+(function(){
+  const RECIPES = window.RECIPES || [], WEEK = window.WEEK || {slots:[]};
+  const RAYONS = window.RAYONS || {}, RAYON_ORDER = window.RAYON_ORDER || [];
+  const byId = Object.fromEntries(RECIPES.map(r => [r.id, r]));
+  const CATL = {viande:"Viande", poisson:"Poisson", vege:"Végétarien", plaisir:"Plaisir", libre:"Repas libre"};
+  const $ = s => document.querySelector(s);
+
+  // ---------- état partagé (swaps, cases cochées, articles ajoutés) ----------
+  let state = {swaps:{}, checked:{}, extras:[]};
+  let db = null, docRef = null, unsub = null;
+  const LS_KEY = "tablee:" + WEEK.id;
+  function loadLocal(){ try{ const s = localStorage.getItem(LS_KEY); if(s) state = Object.assign({swaps:{},checked:{},extras:[]}, JSON.parse(s)); }catch(e){} }
+  function saveLocal(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }catch(e){} }
+  let writeTimer = null;
+  function persist(){
+    saveLocal();
+    if(docRef){
+      clearTimeout(writeTimer);
+      writeTimer = setTimeout(() => docRef.set(JSON.parse(JSON.stringify(state))).catch(()=>{}), 250);
+    }
+    renderAll();
+  }
+
+  // ---------- helpers ----------
+  function recipeFor(slot){ const id = slot.key in state.swaps ? state.swaps[slot.key] : slot.recipe; return id ? byId[id] : null; }
+  function fmtQ(q, u){
+    if(!q) return "";
+    if(u === "g" || u === "ml"){ if(q >= 1000){ const v = q/1000; return (Number.isInteger(v)? v : v.toFixed(1).replace(".", ",")) + (u==="g"?" kg":" l"); } return q + " " + u; }
+    if(u === "pc" || u === "") return String(q);
+    if(u === "cs" || u === "cc") return q + " " + u;
+    const plural = {gousse:"gousses", boule:"boules", pot:"pots", tranche:"tranches", boîte:"boîtes", botte:"bottes", sachet:"sachets"};
+    return q + " " + (q > 1 ? (plural[u] || u) : u);
+  }
+  function fmtIng(i){ const q = fmtQ(i.q, i.u); return q ? q + " " + lower(i.n) : i.n; }
+  function lower(s){ return s.charAt(0).toLowerCase() + s.slice(1); }
+  function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+  function slug(s){ return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-"); }
+  function toast(msg){ const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(()=>t.classList.remove("show"), 1800); }
+
+  // ---------- liste de courses agrégée ----------
+  function buildShop(){
+    const agg = {}; // name -> {n,u,r,q,for:[]}
+    WEEK.slots.forEach(slot => {
+      const r = recipeFor(slot); if(!r) return;
+      r.ing.forEach(i => {
+        const k = i.n;
+        if(!agg[k]) agg[k] = {n:i.n, u:i.u, r:i.r, q:0, for:[]};
+        agg[k].q += i.q; if(!agg[k].for.includes(slot.day)) agg[k].for.push(slot.day);
+      });
+    });
+    const groups = {}; RAYON_ORDER.forEach(r => groups[r] = []);
+    Object.values(agg).forEach(it => groups[it.r].push(it));
+    Object.values(groups).forEach(g => g.sort((a,b)=>a.n.localeCompare(b.n, "fr")));
+    return groups;
+  }
+
+  // ---------- rendu : menu ----------
+  function renderMenu(){
+    $("#weekLabel").textContent = WEEK.label || "";
+    $("#weekTitle").textContent = "Menu de la semaine";
+    $("#weekIntro").textContent = WEEK.intro || "";
+    const counts = {viande:0,poisson:0,vege:0,plaisir:0,libre:0}; let kcal = 0, n = 0;
+    WEEK.slots.forEach(s => { const r = recipeFor(s); if(r){ counts[r.cat]++; kcal += r.kcal; n++; } else counts.libre++; });
+    $("#balance").innerHTML = ["viande","poisson","vege","plaisir","libre"].filter(c=>counts[c]).map(c => `<span class="pill ${c}"><b>${counts[c]}</b> ${CATL[c].toLowerCase()}${counts[c]>1 && c==="libre" ? "s":""}</span>`).join("")
+      + (n ? `<span class="pill kcal"><b>${Math.round(kcal/n)}</b> kcal / pers. en moyenne</span>` : "");
+    $("#days").innerHTML = WEEK.slots.map(s => {
+      const r = recipeFor(s); const swapped = s.key in state.swaps;
+      if(!r) return `<div class="slot libre" data-slot="${s.key}">
+        <div class="when"><span class="d">${s.day}</span><span class="m">${s.meal}</span></div>
+        <div class="dish"><span class="name free">Repas libre : restes, restau, improvisation</span>
+          <div class="meta">${swapped ? `<span class="swapped">Modifié</span>` : ""}</div></div>
+        <div class="acts"><button class="btn small" data-swap="${s.key}">Prévoir un plat</button></div></div>`;
+      return `<div class="slot ${r.cat}" data-slot="${s.key}">
+        <div class="when"><span class="d">${s.day}</span><span class="m">${s.meal}</span></div>
+        <div class="dish"><button class="name" data-open="${r.id}">${esc(r.name)}</button>
+          <div class="meta"><span class="cat">${CATL[r.cat]}</span><span>${r.active} min actives · ${r.total} min en tout</span><span>${r.kcal} kcal / pers.</span>${r.fav ? `<span>★ favori</span>`:""}${swapped ? `<span class="swapped">Modifié</span>` : ""}</div></div>
+        <div class="acts"><button class="btn small" data-open="${r.id}">Recette</button><button class="btn small ghost" data-swap="${s.key}">Remplacer</button></div></div>`;
+    }).join("");
+  }
+
+  // ---------- rendu : courses ----------
+  function renderShop(){
+    const groups = buildShop(); let total = 0, done = 0; const html = [];
+    RAYON_ORDER.forEach(r => {
+      const items = groups[r]; const isP = r === "P";
+      const extras = (r === "E") ? state.extras : [];
+      if(!items.length && !extras.length) return;
+      const rows = items.map(it => {
+        const key = slug(it.n); const ck = !!state.checked[key]; if(!isP){ total++; if(ck) done++; }
+        return `<label class="item ${ck?"done":""}" data-key="${key}">${isP ? "" : `<input type="checkbox" id="ck-${key}" ${ck?"checked":""}>`}<span class="q">${isP ? "" : fmtQ(it.q, it.u)}</span><span class="l">${esc(it.n)}<span class="for">${it.for.join(", ")}</span></span></label>`;
+      });
+      extras.forEach((x, idx) => { const key = "x-" + slug(x); const ck = !!state.checked[key]; total++; if(ck) done++;
+        rows.push(`<label class="item ${ck?"done":""}" data-key="${key}"><input type="checkbox" id="ck-${key}" ${ck?"checked":""}><span class="q"></span><span class="l">${esc(x)}<span class="for">ajouté à la main</span></span><button class="rm" data-rm="${idx}" aria-label="Retirer ${esc(x)}">×</button></label>`); });
+      html.push(`<div class="rayon ${isP?"placard":""}"><h3>${RAYONS[r]}<span>${rows.length}</span></h3>${rows.join("")}</div>`);
+    });
+    $("#shop").innerHTML = html.join("") || `<div class="empty">Aucun plat prévu cette semaine.</div>`;
+    $("#progressText").textContent = `${done} / ${total} articles`;
+    $("#progressBar").style.width = total ? (100*done/total) + "%" : "0%";
+    $("#shopCount").textContent = total - done;
+  }
+  function shopText(){
+    const groups = buildShop(); const out = [WEEK.label || "Courses", ""];
+    RAYON_ORDER.forEach(r => { const items = groups[r]; const extras = r==="E" ? state.extras : []; if(!items.length && !extras.length) return;
+      out.push(RAYONS[r].toUpperCase());
+      items.forEach(it => out.push("- " + (r==="P" ? it.n : fmtIng(it))));
+      extras.forEach(x => out.push("- " + x)); out.push(""); });
+    return out.join("\n");
+  }
+
+  // ---------- rendu : recettes ----------
+  let filter = "all";
+  function renderRecipes(){
+    const list = RECIPES.filter(r => filter==="all" || (filter==="fav" ? r.fav : filter==="quick" ? r.active <= 15 : r.cat === filter));
+    $("#recipeGrid").innerHTML = list.map(r => `<button class="card ${r.cat}" data-open="${r.id}">
+      <span class="t">${esc(r.name)}</span>
+      ${r.sub ? `<span class="s">${esc(r.sub)}</span>` : ""}
+      <span class="meta"><span class="cat">${CATL[r.cat]}</span><span>${r.active} min</span><span>${r.kcal} kcal / pers.</span>${r.fav?`<span class="fav">★ favori</span>`:""}</span></button>`).join("");
+  }
+
+  // ---------- fiche recette ----------
+  function openRecipe(id, slotKey){
+    const r = byId[id]; if(!r) return;
+    $("#rTitle").textContent = r.name;
+    $("#rBody").innerHTML = `
+      <div class="facts"><div class="fact"><div class="v">${r.active} min</div><div class="k">de préparation</div></div><div class="fact"><div class="v">${r.total} min</div><div class="k">en tout</div></div><div class="fact kcal"><div class="v">${r.kcal}</div><div class="k">kcal / pers. (${r.kcalTotal} pour 5)</div></div></div>
+      ${r.sub ? `<p style="margin:0;color:var(--muted)">${esc(r.sub)}</p>` : ""}
+      <h3>Ingrédients pour 5</h3><ul class="ings">${r.ing.map(i => `<li><b>${fmtQ(i.q,i.u)}</b><span>${esc(i.n)}</span></li>`).join("")}</ul>
+      <h3>Préparation</h3><ol class="steps">${r.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
+      ${r.thermomix ? `<div class="variant"><b>Version Thermomix</b>${esc(r.thermomix)}</div>` : ""}
+      ${r.airfryer ? `<div class="variant"><b>Version Airfryer</b>${esc(r.airfryer)}</div>` : ""}
+      ${r.note ? `<div class="note">${esc(r.note)}</div>` : ""}`;
+    $("#rFoot").innerHTML = `<button class="btn" id="rOk">Fermer</button>`;
+    $("#rOk").onclick = () => $("#recipeDlg").close();
+    $("#recipeDlg").showModal(); $("#recipeDlg").scrollTop = 0;
+  }
+
+  // ---------- remplacement ----------
+  function openSwap(slotKey){
+    const slot = WEEK.slots.find(s => s.key === slotKey); const cur = recipeFor(slot);
+    const used = new Set(WEEK.slots.map(s => (recipeFor(s)||{}).id).filter(Boolean));
+    $("#sTitle").textContent = `${slot.day} ${slot.meal.toLowerCase()} : remplacer`;
+    const opt = r => `<button class="opt ${r.cat} ${cur && r.cat===cur.cat ? "same":""}" data-pick="${r.id}"><span class="dot"></span><span class="t">${esc(r.name)}</span><span class="i">${r.active} min · ${r.kcal} kcal</span></button>`;
+    const same = RECIPES.filter(r => !used.has(r.id) && cur && r.cat === cur.cat);
+    const others = RECIPES.filter(r => !used.has(r.id) && !(cur && r.cat === cur.cat));
+    let html = "";
+    if(slotKey in state.swaps) html += `<button class="opt" data-pick="__reset"><span class="dot"></span><span class="t">Remettre le plat prévu au départ</span></button>`;
+    if(cur) html += `<button class="opt" data-pick="__free"><span class="dot"></span><span class="t">Rendre ce repas libre</span></button>`;
+    if(same.length) html += `<div class="sep">Même famille (${CATL[cur.cat].toLowerCase()})</div>` + same.map(opt).join("");
+    html += `<div class="sep">${same.length ? "Autres recettes" : "Toutes les recettes"}</div>` + others.map(opt).join("");
+    $("#swapList").innerHTML = html;
+    $("#swapList").onclick = e => { const b = e.target.closest("[data-pick]"); if(!b) return;
+      const v = b.dataset.pick;
+      if(v === "__reset") delete state.swaps[slotKey]; else if(v === "__free") state.swaps[slotKey] = null; else state.swaps[slotKey] = v;
+      $("#swapDlg").close(); persist(); toast("Menu mis à jour, liste de courses recalculée"); };
+    $("#swapDlg").showModal(); $("#swapDlg").scrollTop = 0;
+  }
+
+  function renderAll(){ renderMenu(); renderShop(); }
+
+  // ---------- événements ----------
+  document.addEventListener("click", e => {
+    const o = e.target.closest("[data-open]"); if(o){ openRecipe(o.dataset.open); return; }
+    const s = e.target.closest("[data-swap]"); if(s){ openSwap(s.dataset.swap); return; }
+    const rm = e.target.closest("[data-rm]"); if(rm){ e.preventDefault(); state.extras.splice(+rm.dataset.rm, 1); persist(); return; }
+  });
+  $("#shop").addEventListener("change", e => { const it = e.target.closest(".item"); if(!it || e.target.type !== "checkbox") return;
+    if(e.target.checked) state.checked[it.dataset.key] = true; else delete state.checked[it.dataset.key]; persist(); });
+  $("#resetChecks").onclick = () => { state.checked = {}; persist(); };
+  $("#copyList").onclick = async () => { const t = shopText();
+    try{ await navigator.clipboard.writeText(t); toast("Liste copiée"); }
+    catch(e){ const ta = document.createElement("textarea"); ta.value = t; document.body.appendChild(ta); ta.select(); try{ document.execCommand("copy"); toast("Liste copiée"); }catch(_){ toast("Copie impossible sur ce navigateur"); } ta.remove(); } };
+  function addExtra(){ const v = $("#extraInput").value.trim(); if(!v) return; state.extras.push(v); $("#extraInput").value = ""; persist(); }
+  $("#extraAdd").onclick = addExtra; $("#extraInput").addEventListener("keydown", e => { if(e.key === "Enter") addExtra(); });
+  $("#rClose").onclick = () => $("#recipeDlg").close(); $("#sClose").onclick = () => $("#swapDlg").close();
+  document.querySelectorAll("dialog").forEach(d => d.addEventListener("click", e => { if(e.target === d) d.close(); }));
+  $("#filters").addEventListener("click", e => { const c = e.target.closest(".chip"); if(!c) return; filter = c.dataset.f;
+    document.querySelectorAll("#filters .chip").forEach(x => x.setAttribute("aria-pressed", x === c ? "true" : "false")); renderRecipes(); });
+  const tabs = [...document.querySelectorAll(".tab")];
+  function showTab(id){ tabs.forEach(t => { const on = t.id === id; t.setAttribute("aria-selected", on ? "true" : "false"); document.getElementById(t.getAttribute("aria-controls")).hidden = !on; });
+    try{ localStorage.setItem("tablee:tab", id); }catch(e){} }
+  tabs.forEach(t => t.onclick = () => showTab(t.id));
+
+  // ---------- démarrage ----------
+  loadLocal(); renderAll(); renderRecipes();
+  try{ const t = localStorage.getItem("tablee:tab"); if(t && document.getElementById(t)) showTab(t); }catch(e){}
+
+  // synchronisation entre les deux adultes, quand elle est disponible
+  (async () => {
+    if(!window.claude || !window.claude.use) return;
+    try{ db = await window.claude.use("db"); }catch(e){ db = null; }
+    if(!db) return;
+    docRef = db.doc("weeks/" + WEEK.id);
+    const sy = $("#sync");
+    unsub = docRef.onSnapshot(snap => {
+      sy.classList.add("on"); sy.querySelector("span").textContent = "Synchronisé entre vos téléphones";
+      if(snap.exists){ const d = snap.data(); if(!snap.metadata.hasPendingWrites){ state = {swaps: d.swaps || {}, checked: d.checked || {}, extras: d.extras || []}; saveLocal(); renderAll(); } }
+      else if(Object.keys(state.swaps).length || Object.keys(state.checked).length || state.extras.length){ docRef.set(JSON.parse(JSON.stringify(state))).catch(()=>{}); }
+    }, () => { sy.classList.remove("on"); sy.querySelector("span").textContent = "Hors ligne, cases enregistrées sur cet appareil"; });
+  })();
+})();
+</script>
+</body>
+</html>
