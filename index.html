@@ -469,6 +469,8 @@ dialog::backdrop{background:rgba(10,15,12,.55)}
   };
   const sy = $("#sync");
   let ref = null, applyingRemote = false;
+  // Firebase ignore un document vide : on y ajoute toujours la date, sinon décocher la dernière case ne s'enregistre pas
+  function payload(){ return Object.assign(JSON.parse(JSON.stringify(state)), {updatedAt: Date.now()}); }
   function setSync(on, text){ sy.classList.toggle("on", on); sy.querySelector("span").textContent = text; }
   function getCode(){ try{ return localStorage.getItem("tablee:code") || ""; }catch(e){ return ""; } }
   function askCode(msg){
@@ -487,7 +489,7 @@ dialog::backdrop{background:rgba(10,15,12,.55)}
       const d = snap.val();
       setSync(true, "Synchronisé entre vos téléphones");
       if(d){ applyingRemote = true; state = {swaps: d.swaps || {}, checked: d.checked || {}, extras: d.extras || []}; saveLocal(); renderAll(); applyingRemote = false; }
-      else if(Object.keys(state.swaps).length || Object.keys(state.checked).length || state.extras.length){ ref.set(JSON.parse(JSON.stringify(state))); }
+      else if(Object.keys(state.swaps).length || Object.keys(state.checked).length || state.extras.length){ ref.set(payload()); }
     }, err => {
       ref.off(); ref = null;
       try{ localStorage.removeItem("tablee:code"); }catch(e){}
@@ -497,7 +499,7 @@ dialog::backdrop{background:rgba(10,15,12,.55)}
   }
   // persist() écrit aussi dans Firebase
   const persistLocalOnly = persist;
-  persist = function(){ persistLocalOnly(); if(ref) ref.set(JSON.parse(JSON.stringify(state))).catch(()=>{}); };
+  persist = function(){ persistLocalOnly(); if(ref) ref.set(payload()).catch(()=>{}); };
   $("#codeForm").addEventListener("submit", e => {
     e.preventDefault();
     const code = $("#codeInput").value.trim().replace(/[^A-Za-z0-9_-]/g, "");
