@@ -1,0 +1,30 @@
+name: Menu de la semaine
+
+on:
+  schedule:
+    # Vendredi 05:00 UTC, soit 7h à Paris en été et 6h en hiver
+    - cron: "0 5 * * 5"
+  workflow_dispatch:
+    inputs:
+      monday:
+        description: "Lundi visé (AAAA-MM-JJ), vide = lundi prochain"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  composer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Composer le menu
+        run: python3 generate_week.py ${{ github.event.inputs.monday }} ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }}
+      - name: Publier
+        run: |
+          git config user.name "Robot Tablée"
+          git config user.email "actions@users.noreply.github.com"
+          git add week.js history.json
+          git diff --cached --quiet && echo "Rien à publier" || git commit -m "Menu : $(python3 -c "import re;print(re.search(r'\"label\": \"(.*?)\"', open('week.js').read()).group(1))")"
+          git push
