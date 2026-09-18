@@ -1,3 +1,30 @@
 [
- {"id": "2026-W38", "start": "2026-09-14", "recipes": ["poulet-miel-carottes-riz", "gaufres-epinards", "poisson-pane-puree-patate-douce", "tomate-mozza-avocat-pates-pesto", "saumon-four-riz-courgettes", "steak-hache-frites-haricots", "poulet-roti-pdt-salade", "ratatouille-riz-oeufs"]}
+ {
+  "id": "2026-W38",
+  "start": "2026-09-14",
+  "recipes": [
+   "poulet-miel-carottes-riz",
+   "gaufres-epinards",
+   "poisson-pane-puree-patate-douce",
+   "tomate-mozza-avocat-pates-pesto",
+   "saumon-four-riz-courgettes",
+   "steak-hache-frites-haricots",
+   "poulet-roti-pdt-salade",
+   "ratatouille-riz-oeufs"
+  ]
+ },
+ {
+  "id": "2026-W39",
+  "start": "2026-09-21",
+  "recipes": [
+   "soupe-patate-douce-coco",
+   "tacos-poulet",
+   "poisson-pane-frites-petits-pois",
+   "dahl-lentilles-corail",
+   "cabillaud-papillote-pdt-carottes-miel",
+   "burgers-frites-patate-douce",
+   "saucisses-puree-petits-pois",
+   "tofu-croustillant-riz-legumes"
+  ]
+ }
 ]

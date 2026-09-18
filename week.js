@@ -1,19 +1,64 @@
-// Menu de la semaine. Ce fichier est remplacé chaque vendredi matin par la tâche planifiée.
+// Menu de la semaine. Fichier régénéré automatiquement chaque vendredi matin par generate_week.py.
 window.WEEK = {
-  "id": "2026-W38",
-  "label": "Semaine du 14 au 20 septembre 2026",
-  "start": "2026-09-14",
-  "generatedAt": "2026-09-13",
-  "intro": "Une semaine de rentrée douce : deux favoris (gaufres aux épinards, poisson pané et purée de patate douce), un dimanche au four, et de la ratatouille tant que les courgettes sont encore belles.",
+  "id": "2026-W39",
+  "label": "Semaine du 21 au 27 septembre 2026",
+  "start": "2026-09-21",
+  "generatedAt": "2026-09-18",
+  "intro": "Rentrée : les dernières tomates et courgettes, et le retour des brocolis. Au menu, deux favoris de la maison : velouté de patate douce et carotte au lait de coco et poisson pané.",
   "slots": [
-    { "key": "lun-diner", "day": "Lundi", "meal": "Dîner", "recipe": "poulet-miel-carottes-riz" },
-    { "key": "mar-diner", "day": "Mardi", "meal": "Dîner", "recipe": "gaufres-epinards" },
-    { "key": "mer-diner", "day": "Mercredi", "meal": "Dîner", "recipe": "poisson-pane-puree-patate-douce" },
-    { "key": "jeu-diner", "day": "Jeudi", "meal": "Dîner", "recipe": "tomate-mozza-avocat-pates-pesto" },
-    { "key": "ven-diner", "day": "Vendredi", "meal": "Dîner", "recipe": null },
-    { "key": "sam-dej", "day": "Samedi", "meal": "Déjeuner", "recipe": "saumon-four-riz-courgettes" },
-    { "key": "sam-diner", "day": "Samedi", "meal": "Dîner", "recipe": "steak-hache-frites-haricots" },
-    { "key": "dim-dej", "day": "Dimanche", "meal": "Déjeuner", "recipe": "poulet-roti-pdt-salade" },
-    { "key": "dim-diner", "day": "Dimanche", "meal": "Dîner", "recipe": "ratatouille-riz-oeufs" }
+    {
+      "key": "lun-diner",
+      "day": "Lundi",
+      "meal": "Dîner",
+      "recipe": "soupe-patate-douce-coco"
+    },
+    {
+      "key": "mar-diner",
+      "day": "Mardi",
+      "meal": "Dîner",
+      "recipe": "tacos-poulet"
+    },
+    {
+      "key": "mer-diner",
+      "day": "Mercredi",
+      "meal": "Dîner",
+      "recipe": "poisson-pane-frites-petits-pois"
+    },
+    {
+      "key": "jeu-diner",
+      "day": "Jeudi",
+      "meal": "Dîner",
+      "recipe": "dahl-lentilles-corail"
+    },
+    {
+      "key": "ven-diner",
+      "day": "Vendredi",
+      "meal": "Dîner",
+      "recipe": null
+    },
+    {
+      "key": "sam-dej",
+      "day": "Samedi",
+      "meal": "Déjeuner",
+      "recipe": "cabillaud-papillote-pdt-carottes-miel"
+    },
+    {
+      "key": "sam-diner",
+      "day": "Samedi",
+      "meal": "Dîner",
+      "recipe": "burgers-frites-patate-douce"
+    },
+    {
+      "key": "dim-dej",
+      "day": "Dimanche",
+      "meal": "Déjeuner",
+      "recipe": "saucisses-puree-petits-pois"
+    },
+    {
+      "key": "dim-diner",
+      "day": "Dimanche",
+      "meal": "Dîner",
+      "recipe": "tofu-croustillant-riz-legumes"
+    }
   ]
 };
