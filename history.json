@@ -40,5 +40,19 @@
    "dahl-lentilles-corail",
    "wok-boeuf-legumes-nouilles"
   ]
+ },
+ {
+  "id": "2026-W41",
+  "start": "2026-10-05",
+  "recipes": [
+   "dinde-creme-champignons-pates",
+   "pates-brocoli-parmesan",
+   "poisson-pane-puree-patate-douce",
+   "dahl-lentilles-corail",
+   "wraps-poisson-pane-avocat",
+   "steak-hache-frites-haricots",
+   "tarte-tomates-moutarde",
+   "bolognaise-maison"
+  ]
  }
 ]
