@@ -54,5 +54,19 @@
    "tarte-tomates-moutarde",
    "bolognaise-maison"
   ]
+ },
+ {
+  "id": "2026-W42",
+  "start": "2026-10-12",
+  "recipes": [
+   "poulet-miel-carottes-riz",
+   "soupe-patate-douce-coco",
+   "croque-monsieur-salade",
+   "saumon-four-riz-courgettes",
+   "riz-saute-oeufs-petits-pois",
+   "steak-hache-frites-haricots",
+   "tarte-tomates-moutarde",
+   "wraps-poisson-pane-avocat"
+  ]
  }
 ]

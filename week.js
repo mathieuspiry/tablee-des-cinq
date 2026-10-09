@@ -1,34 +1,34 @@
 // Menu de la semaine. Fichier régénéré automatiquement chaque vendredi matin par generate_week.py.
 window.WEEK = {
-  "id": "2026-W41",
-  "label": "Semaine du 5 au 11 octobre 2026",
-  "start": "2026-10-05",
-  "generatedAt": "2026-10-02",
-  "intro": "Automne : patates douces, brocolis et plats qui réchauffent. Au menu, deux favoris de la maison : poisson pané et steak haché. Dimanche midi, tarte tomates : le four fait le travail.",
+  "id": "2026-W42",
+  "label": "Semaine du 12 au 18 octobre 2026",
+  "start": "2026-10-12",
+  "generatedAt": "2026-10-09",
+  "intro": "Automne : patates douces, brocolis et plats qui réchauffent. Au menu, deux favoris de la maison : émincé de poulet au miel et velouté de patate douce et carotte au lait de coco. Dimanche midi, tarte tomates : le four fait le travail.",
   "slots": [
     {
       "key": "lun-diner",
       "day": "Lundi",
       "meal": "Dîner",
-      "recipe": "dinde-creme-champignons-pates"
+      "recipe": "poulet-miel-carottes-riz"
     },
     {
       "key": "mar-diner",
       "day": "Mardi",
       "meal": "Dîner",
-      "recipe": "pates-brocoli-parmesan"
+      "recipe": "soupe-patate-douce-coco"
     },
     {
       "key": "mer-diner",
       "day": "Mercredi",
       "meal": "Dîner",
-      "recipe": "poisson-pane-puree-patate-douce"
+      "recipe": "croque-monsieur-salade"
     },
     {
       "key": "jeu-diner",
       "day": "Jeudi",
       "meal": "Dîner",
-      "recipe": "dahl-lentilles-corail"
+      "recipe": "saumon-four-riz-courgettes"
     },
     {
       "key": "ven-diner",
@@ -40,7 +40,7 @@ window.WEEK = {
       "key": "sam-dej",
       "day": "Samedi",
       "meal": "Déjeuner",
-      "recipe": "wraps-poisson-pane-avocat"
+      "recipe": "riz-saute-oeufs-petits-pois"
     },
     {
       "key": "sam-diner",
@@ -58,7 +58,7 @@ window.WEEK = {
       "key": "dim-diner",
       "day": "Dimanche",
       "meal": "Dîner",
-      "recipe": "bolognaise-maison"
+      "recipe": "wraps-poisson-pane-avocat"
     }
   ]
 };
