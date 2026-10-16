@@ -68,5 +68,19 @@
    "tarte-tomates-moutarde",
    "wraps-poisson-pane-avocat"
   ]
+ },
+ {
+  "id": "2026-W43",
+  "start": "2026-10-19",
+  "recipes": [
+   "ratatouille-riz-oeufs",
+   "crevettes-ail-nouilles-legumes",
+   "omelette-courgettes-pdt",
+   "cabillaud-papillote-pdt-carottes-miel",
+   "hachis-parmentier",
+   "burgers-frites-patate-douce",
+   "poulet-roti-pdt-salade",
+   "gaufres-epinards"
+  ]
  }
 ]

@@ -1,34 +1,34 @@
 // Menu de la semaine. Fichier régénéré automatiquement chaque vendredi matin par generate_week.py.
 window.WEEK = {
-  "id": "2026-W42",
-  "label": "Semaine du 12 au 18 octobre 2026",
-  "start": "2026-10-12",
-  "generatedAt": "2026-10-09",
-  "intro": "Automne : patates douces, brocolis et plats qui réchauffent. Au menu, deux favoris de la maison : émincé de poulet au miel et velouté de patate douce et carotte au lait de coco. Dimanche midi, tarte tomates : le four fait le travail.",
+  "id": "2026-W43",
+  "label": "Semaine du 19 au 25 octobre 2026",
+  "start": "2026-10-19",
+  "generatedAt": "2026-10-16",
+  "intro": "Automne : patates douces, brocolis et plats qui réchauffent. Au menu, deux favoris de la maison : ratatouille et omelette aux courgettes. Dimanche midi, poulet rôti : le four fait le travail.",
   "slots": [
     {
       "key": "lun-diner",
       "day": "Lundi",
       "meal": "Dîner",
-      "recipe": "poulet-miel-carottes-riz"
+      "recipe": "ratatouille-riz-oeufs"
     },
     {
       "key": "mar-diner",
       "day": "Mardi",
       "meal": "Dîner",
-      "recipe": "soupe-patate-douce-coco"
+      "recipe": "crevettes-ail-nouilles-legumes"
     },
     {
       "key": "mer-diner",
       "day": "Mercredi",
       "meal": "Dîner",
-      "recipe": "croque-monsieur-salade"
+      "recipe": "omelette-courgettes-pdt"
     },
     {
       "key": "jeu-diner",
       "day": "Jeudi",
       "meal": "Dîner",
-      "recipe": "saumon-four-riz-courgettes"
+      "recipe": "cabillaud-papillote-pdt-carottes-miel"
     },
     {
       "key": "ven-diner",
@@ -40,25 +40,25 @@ window.WEEK = {
       "key": "sam-dej",
       "day": "Samedi",
       "meal": "Déjeuner",
-      "recipe": "riz-saute-oeufs-petits-pois"
+      "recipe": "hachis-parmentier"
     },
     {
       "key": "sam-diner",
       "day": "Samedi",
       "meal": "Dîner",
-      "recipe": "steak-hache-frites-haricots"
+      "recipe": "burgers-frites-patate-douce"
     },
     {
       "key": "dim-dej",
       "day": "Dimanche",
       "meal": "Déjeuner",
-      "recipe": "tarte-tomates-moutarde"
+      "recipe": "poulet-roti-pdt-salade"
     },
     {
       "key": "dim-diner",
       "day": "Dimanche",
       "meal": "Dîner",
-      "recipe": "wraps-poisson-pane-avocat"
+      "recipe": "gaufres-epinards"
     }
   ]
 };
