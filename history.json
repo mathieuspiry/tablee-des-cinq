@@ -82,5 +82,19 @@
    "poulet-roti-pdt-salade",
    "gaufres-epinards"
   ]
+ },
+ {
+  "id": "2026-W44",
+  "start": "2026-10-26",
+  "recipes": [
+   "poulet-curry-coco-riz",
+   "gaufres-epinards",
+   "saumon-four-riz-courgettes",
+   "pates-brocoli-parmesan",
+   "croque-monsieur-salade",
+   "burgers-frites-patate-douce",
+   "salade-riz-thon",
+   "soupe-patate-douce-coco"
+  ]
  }
 ]

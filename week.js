@@ -1,34 +1,34 @@
 // Menu de la semaine. Fichier régénéré automatiquement chaque vendredi matin par generate_week.py.
 window.WEEK = {
-  "id": "2026-W43",
-  "label": "Semaine du 19 au 25 octobre 2026",
-  "start": "2026-10-19",
-  "generatedAt": "2026-10-16",
-  "intro": "Automne : patates douces, brocolis et plats qui réchauffent. Au menu, deux favoris de la maison : ratatouille et omelette aux courgettes. Dimanche midi, poulet rôti : le four fait le travail.",
+  "id": "2026-W44",
+  "label": "Semaine du 26 octobre au 1 novembre 2026",
+  "start": "2026-10-26",
+  "generatedAt": "2026-10-23",
+  "intro": "Automne : patates douces, brocolis et plats qui réchauffent. Au menu, deux favoris de la maison : gaufres aux épinards et saumon au four.",
   "slots": [
     {
       "key": "lun-diner",
       "day": "Lundi",
       "meal": "Dîner",
-      "recipe": "ratatouille-riz-oeufs"
+      "recipe": "poulet-curry-coco-riz"
     },
     {
       "key": "mar-diner",
       "day": "Mardi",
       "meal": "Dîner",
-      "recipe": "crevettes-ail-nouilles-legumes"
+      "recipe": "gaufres-epinards"
     },
     {
       "key": "mer-diner",
       "day": "Mercredi",
       "meal": "Dîner",
-      "recipe": "omelette-courgettes-pdt"
+      "recipe": "saumon-four-riz-courgettes"
     },
     {
       "key": "jeu-diner",
       "day": "Jeudi",
       "meal": "Dîner",
-      "recipe": "cabillaud-papillote-pdt-carottes-miel"
+      "recipe": "pates-brocoli-parmesan"
     },
     {
       "key": "ven-diner",
@@ -40,7 +40,7 @@ window.WEEK = {
       "key": "sam-dej",
       "day": "Samedi",
       "meal": "Déjeuner",
-      "recipe": "hachis-parmentier"
+      "recipe": "croque-monsieur-salade"
     },
     {
       "key": "sam-diner",
@@ -52,13 +52,13 @@ window.WEEK = {
       "key": "dim-dej",
       "day": "Dimanche",
       "meal": "Déjeuner",
-      "recipe": "poulet-roti-pdt-salade"
+      "recipe": "salade-riz-thon"
     },
     {
       "key": "dim-diner",
       "day": "Dimanche",
       "meal": "Dîner",
-      "recipe": "gaufres-epinards"
+      "recipe": "soupe-patate-douce-coco"
     }
   ]
 };
