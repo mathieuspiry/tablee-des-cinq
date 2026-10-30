@@ -96,5 +96,19 @@
    "salade-riz-thon",
    "soupe-patate-douce-coco"
   ]
+ },
+ {
+  "id": "2026-W45",
+  "start": "2026-11-02",
+  "recipes": [
+   "dinde-creme-champignons-pates",
+   "tomate-mozza-avocat-pates-pesto",
+   "pates-thon-tomates",
+   "gratin-gnocchis-epinards-chevre",
+   "gratin-pates-jambon-brocoli",
+   "burgers-frites-patate-douce",
+   "tarte-tomates-moutarde",
+   "poisson-pane-puree-patate-douce"
+  ]
  }
 ]

@@ -1,34 +1,34 @@
 // Menu de la semaine. Fichier régénéré automatiquement chaque vendredi matin par generate_week.py.
 window.WEEK = {
-  "id": "2026-W44",
-  "label": "Semaine du 26 octobre au 1 novembre 2026",
-  "start": "2026-10-26",
-  "generatedAt": "2026-10-23",
-  "intro": "Automne : patates douces, brocolis et plats qui réchauffent. Au menu, deux favoris de la maison : gaufres aux épinards et saumon au four.",
+  "id": "2026-W45",
+  "label": "Semaine du 2 au 8 novembre 2026",
+  "start": "2026-11-02",
+  "generatedAt": "2026-10-30",
+  "intro": "Novembre : veloutés, gratins et purées maison. Au menu, deux favoris de la maison : tomates et burgers maison et frites de patate douce. Dimanche midi, tarte tomates : le four fait le travail.",
   "slots": [
     {
       "key": "lun-diner",
       "day": "Lundi",
       "meal": "Dîner",
-      "recipe": "poulet-curry-coco-riz"
+      "recipe": "dinde-creme-champignons-pates"
     },
     {
       "key": "mar-diner",
       "day": "Mardi",
       "meal": "Dîner",
-      "recipe": "gaufres-epinards"
+      "recipe": "tomate-mozza-avocat-pates-pesto"
     },
     {
       "key": "mer-diner",
       "day": "Mercredi",
       "meal": "Dîner",
-      "recipe": "saumon-four-riz-courgettes"
+      "recipe": "pates-thon-tomates"
     },
     {
       "key": "jeu-diner",
       "day": "Jeudi",
       "meal": "Dîner",
-      "recipe": "pates-brocoli-parmesan"
+      "recipe": "gratin-gnocchis-epinards-chevre"
     },
     {
       "key": "ven-diner",
@@ -40,7 +40,7 @@ window.WEEK = {
       "key": "sam-dej",
       "day": "Samedi",
       "meal": "Déjeuner",
-      "recipe": "croque-monsieur-salade"
+      "recipe": "gratin-pates-jambon-brocoli"
     },
     {
       "key": "sam-diner",
@@ -52,13 +52,13 @@ window.WEEK = {
       "key": "dim-dej",
       "day": "Dimanche",
       "meal": "Déjeuner",
-      "recipe": "salade-riz-thon"
+      "recipe": "tarte-tomates-moutarde"
     },
     {
       "key": "dim-diner",
       "day": "Dimanche",
       "meal": "Dîner",
-      "recipe": "soupe-patate-douce-coco"
+      "recipe": "poisson-pane-puree-patate-douce"
     }
   ]
 };
