@@ -110,5 +110,19 @@
    "tarte-tomates-moutarde",
    "poisson-pane-puree-patate-douce"
   ]
+ },
+ {
+  "id": "2026-W46",
+  "start": "2026-11-09",
+  "recipes": [
+   "bol-quinoa-pois-chiches",
+   "wraps-poisson-pane-avocat",
+   "saucisses-puree-petits-pois",
+   "dahl-lentilles-corail",
+   "poisson-pane-frites-petits-pois",
+   "steak-hache-frites-haricots",
+   "chili-doux-riz",
+   "riz-saute-oeufs-petits-pois"
+  ]
  }
 ]

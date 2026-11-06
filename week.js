@@ -1,34 +1,34 @@
 // Menu de la semaine. Fichier régénéré automatiquement chaque vendredi matin par generate_week.py.
 window.WEEK = {
-  "id": "2026-W45",
-  "label": "Semaine du 2 au 8 novembre 2026",
-  "start": "2026-11-02",
-  "generatedAt": "2026-10-30",
-  "intro": "Novembre : veloutés, gratins et purées maison. Au menu, deux favoris de la maison : tomates et burgers maison et frites de patate douce. Dimanche midi, tarte tomates : le four fait le travail.",
+  "id": "2026-W46",
+  "label": "Semaine du 9 au 15 novembre 2026",
+  "start": "2026-11-09",
+  "generatedAt": "2026-11-06",
+  "intro": "Novembre : veloutés, gratins et purées maison. Au menu, deux favoris de la maison : poisson pané et steak haché.",
   "slots": [
     {
       "key": "lun-diner",
       "day": "Lundi",
       "meal": "Dîner",
-      "recipe": "dinde-creme-champignons-pates"
+      "recipe": "bol-quinoa-pois-chiches"
     },
     {
       "key": "mar-diner",
       "day": "Mardi",
       "meal": "Dîner",
-      "recipe": "tomate-mozza-avocat-pates-pesto"
+      "recipe": "wraps-poisson-pane-avocat"
     },
     {
       "key": "mer-diner",
       "day": "Mercredi",
       "meal": "Dîner",
-      "recipe": "pates-thon-tomates"
+      "recipe": "saucisses-puree-petits-pois"
     },
     {
       "key": "jeu-diner",
       "day": "Jeudi",
       "meal": "Dîner",
-      "recipe": "gratin-gnocchis-epinards-chevre"
+      "recipe": "dahl-lentilles-corail"
     },
     {
       "key": "ven-diner",
@@ -40,25 +40,25 @@ window.WEEK = {
       "key": "sam-dej",
       "day": "Samedi",
       "meal": "Déjeuner",
-      "recipe": "gratin-pates-jambon-brocoli"
+      "recipe": "poisson-pane-frites-petits-pois"
     },
     {
       "key": "sam-diner",
       "day": "Samedi",
       "meal": "Dîner",
-      "recipe": "burgers-frites-patate-douce"
+      "recipe": "steak-hache-frites-haricots"
     },
     {
       "key": "dim-dej",
       "day": "Dimanche",
       "meal": "Déjeuner",
-      "recipe": "tarte-tomates-moutarde"
+      "recipe": "chili-doux-riz"
     },
     {
       "key": "dim-diner",
       "day": "Dimanche",
       "meal": "Dîner",
-      "recipe": "poisson-pane-puree-patate-douce"
+      "recipe": "riz-saute-oeufs-petits-pois"
     }
   ]
 };
