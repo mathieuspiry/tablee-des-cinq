@@ -1,34 +1,34 @@
 // Menu de la semaine. Fichier régénéré automatiquement chaque vendredi matin par generate_week.py.
 window.WEEK = {
-  "id": "2026-W46",
-  "label": "Semaine du 9 au 15 novembre 2026",
-  "start": "2026-11-09",
-  "generatedAt": "2026-11-06",
-  "intro": "Novembre : veloutés, gratins et purées maison. Au menu, deux favoris de la maison : poisson pané et steak haché.",
+  "id": "2026-W47",
+  "label": "Semaine du 16 au 22 novembre 2026",
+  "start": "2026-11-16",
+  "generatedAt": "2026-11-13",
+  "intro": "Novembre : veloutés, gratins et purées maison. Au menu, deux favoris de la maison : émincé de poulet au miel et omelette aux courgettes. Dimanche midi, ratatouille : le four fait le travail.",
   "slots": [
     {
       "key": "lun-diner",
       "day": "Lundi",
       "meal": "Dîner",
-      "recipe": "bol-quinoa-pois-chiches"
+      "recipe": "poulet-miel-carottes-riz"
     },
     {
       "key": "mar-diner",
       "day": "Mardi",
       "meal": "Dîner",
-      "recipe": "wraps-poisson-pane-avocat"
+      "recipe": "omelette-courgettes-pdt"
     },
     {
       "key": "mer-diner",
       "day": "Mercredi",
       "meal": "Dîner",
-      "recipe": "saucisses-puree-petits-pois"
+      "recipe": "crevettes-ail-nouilles-legumes"
     },
     {
       "key": "jeu-diner",
       "day": "Jeudi",
       "meal": "Dîner",
-      "recipe": "dahl-lentilles-corail"
+      "recipe": "wok-boeuf-legumes-nouilles"
     },
     {
       "key": "ven-diner",
@@ -40,25 +40,25 @@ window.WEEK = {
       "key": "sam-dej",
       "day": "Samedi",
       "meal": "Déjeuner",
-      "recipe": "poisson-pane-frites-petits-pois"
+      "recipe": "rosti-oeufs-salade"
     },
     {
       "key": "sam-diner",
       "day": "Samedi",
       "meal": "Dîner",
-      "recipe": "steak-hache-frites-haricots"
+      "recipe": "pizza-jambon-champignons"
     },
     {
       "key": "dim-dej",
       "day": "Dimanche",
       "meal": "Déjeuner",
-      "recipe": "chili-doux-riz"
+      "recipe": "ratatouille-riz-oeufs"
     },
     {
       "key": "dim-diner",
       "day": "Dimanche",
       "meal": "Dîner",
-      "recipe": "riz-saute-oeufs-petits-pois"
+      "recipe": "cabillaud-papillote-pdt-carottes-miel"
     }
   ]
 };
