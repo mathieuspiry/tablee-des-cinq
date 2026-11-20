@@ -1,28 +1,28 @@
 // Menu de la semaine. Fichier régénéré automatiquement chaque vendredi matin par generate_week.py.
 window.WEEK = {
-  "id": "2026-W47",
-  "label": "Semaine du 16 au 22 novembre 2026",
-  "start": "2026-11-16",
-  "generatedAt": "2026-11-13",
-  "intro": "Novembre : veloutés, gratins et purées maison. Au menu, deux favoris de la maison : émincé de poulet au miel et omelette aux courgettes. Dimanche midi, ratatouille : le four fait le travail.",
+  "id": "2026-W48",
+  "label": "Semaine du 23 au 29 novembre 2026",
+  "start": "2026-11-23",
+  "generatedAt": "2026-11-20",
+  "intro": "Novembre : veloutés, gratins et purées maison. Au menu, deux favoris de la maison : gaufres aux épinards et steak haché. Dimanche midi, tarte tomates : le four fait le travail.",
   "slots": [
     {
       "key": "lun-diner",
       "day": "Lundi",
       "meal": "Dîner",
-      "recipe": "poulet-miel-carottes-riz"
+      "recipe": "dinde-creme-champignons-pates"
     },
     {
       "key": "mar-diner",
       "day": "Mardi",
       "meal": "Dîner",
-      "recipe": "omelette-courgettes-pdt"
+      "recipe": "pates-thon-tomates"
     },
     {
       "key": "mer-diner",
       "day": "Mercredi",
       "meal": "Dîner",
-      "recipe": "crevettes-ail-nouilles-legumes"
+      "recipe": "gratin-gnocchis-epinards-chevre"
     },
     {
       "key": "jeu-diner",
@@ -40,25 +40,25 @@ window.WEEK = {
       "key": "sam-dej",
       "day": "Samedi",
       "meal": "Déjeuner",
-      "recipe": "rosti-oeufs-salade"
+      "recipe": "gaufres-epinards"
     },
     {
       "key": "sam-diner",
       "day": "Samedi",
       "meal": "Dîner",
-      "recipe": "pizza-jambon-champignons"
+      "recipe": "steak-hache-frites-haricots"
     },
     {
       "key": "dim-dej",
       "day": "Dimanche",
       "meal": "Déjeuner",
-      "recipe": "ratatouille-riz-oeufs"
+      "recipe": "tarte-tomates-moutarde"
     },
     {
       "key": "dim-diner",
       "day": "Dimanche",
       "meal": "Dîner",
-      "recipe": "cabillaud-papillote-pdt-carottes-miel"
+      "recipe": "wraps-poisson-pane-avocat"
     }
   ]
 };

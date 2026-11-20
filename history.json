@@ -138,5 +138,19 @@
    "ratatouille-riz-oeufs",
    "cabillaud-papillote-pdt-carottes-miel"
   ]
+ },
+ {
+  "id": "2026-W48",
+  "start": "2026-11-23",
+  "recipes": [
+   "dinde-creme-champignons-pates",
+   "pates-thon-tomates",
+   "gratin-gnocchis-epinards-chevre",
+   "wok-boeuf-legumes-nouilles",
+   "gaufres-epinards",
+   "steak-hache-frites-haricots",
+   "tarte-tomates-moutarde",
+   "wraps-poisson-pane-avocat"
+  ]
  }
 ]
